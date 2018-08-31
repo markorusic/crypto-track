@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
-import formatCurrencyValue from 'helpers/format/formatCurrencyValue'
+import {
+  formatCurrencyValue,
+  formatCurrencyPercent
+} from 'helpers/format'
 import UserCurrencyForm from 'components/CurrencyList/UserCurrencyForm'
 
 export default class CurrencyListItem extends Component {
@@ -16,6 +19,8 @@ export default class CurrencyListItem extends Component {
   render () {
     const { currency } = this.props
     const { id, name, symbol, quotes, userAmount } = currency
+    const currencyPercentClass = quotes.USD.percent_change_24h > 0 ? 'green' : 'red'
+
     return (
       <tr className="currency-list-item">
         <td>
@@ -25,7 +30,9 @@ export default class CurrencyListItem extends Component {
         </td>
         <td>{symbol}</td>
         <td>{formatCurrencyValue(quotes.USD.price)}</td>
-        <td>{quotes.USD.percent_change_24h}%</td>
+        <td className={'text-' + currencyPercentClass}>
+          {formatCurrencyPercent(quotes.USD.percent_change_24h)}
+        </td>
         <td>
           <UserCurrencyForm
             onSubmit={this.onUserAmountSubmit}

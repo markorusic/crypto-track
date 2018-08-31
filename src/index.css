@@ -74,6 +74,14 @@ tr:nth-child(even) {
   flex-direction: column;
 }
 
+.text-green {
+  color: green;
+}
+
+.text-red {
+  color: red;
+}
+
 /* Specifics */
 .user-currency-form * {
   width: 100%;
