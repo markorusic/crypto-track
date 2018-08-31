@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {
   formatCurrencyValue,
-  formatDateFromNow,
-  formatLargeNumber
+  formatDateFromNow
 } from 'helpers/format'
-import CurrencyPercent from 'components/CurrencyPercent'
+import LargeNumber from 'components/shared/LargeNumber'
+import CurrencyPercent from 'components/currency/CurrencyPercent'
 import Loader from 'components/shared/Loader'
 import cryptoServiceApi from 'services/crypto/api'
 
@@ -55,12 +55,34 @@ export default class CurrencyDetails extends Component {
           <p>
             Last 7d: <CurrencyPercent percent={currency.quotes.USD.percent_change_7d} />
           </p>
-
-          <p>Market Cap: $ {formatLargeNumber(currency.quotes.USD.market_cap)}</p>
-
-          <p>Circulating Supply: {formatLargeNumber(currency.circulating_supply)} {currency.symbol}</p>
-          <p>Total Supply: {formatLargeNumber(currency.total_supply)} {currency.symbol}</p>
-          <p>Max Supply: {formatLargeNumber(currency.max_supply)} {currency.symbol}</p>
+          <p>
+            <LargeNumber
+              textBefore="Market Cap: $"
+              textAfter="USD"
+              number={currency.quotes.USD.market_cap}
+            />
+          </p>
+          <p>
+            <LargeNumber
+              textBefore="Circulating Supply:"
+              textAfter={currency.symbol}
+              number={currency.circulating_supply}
+            />
+          </p>
+          <p>
+            <LargeNumber
+              textBefore="Total Supply:"
+              textAfter={currency.symbol}
+              number={currency.total}
+            />
+          </p>
+          <p>
+            <LargeNumber
+              textBefore="Max Supply:"
+              textAfter={currency.symbol}
+              number={currency.max_supply}
+            />
+          </p>
         </div>
       </div>
     )

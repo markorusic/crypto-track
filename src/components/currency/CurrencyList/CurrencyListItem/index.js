@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 import { formatCurrencyValue } from 'helpers/format'
-import UserCurrencyForm from 'components/CurrencyList/UserCurrencyForm'
-import CurrencyPercent from 'components/CurrencyPercent'
+import UserCurrencyForm from 'components/currency/CurrencyList/UserCurrencyForm'
+import CurrencyPercent from 'components/currency/CurrencyPercent'
 
 export default class CurrencyListItem extends Component {
 

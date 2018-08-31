@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { REFRESH_INTERVAL } from 'config/app'
 import cryptoService from 'services/crypto'
 import Loader from 'components/shared/Loader'
-import CurrencyList from 'components/CurrencyList'
+import CurrencyList from 'components/currency/CurrencyList'
 
 
 class App extends Component {
