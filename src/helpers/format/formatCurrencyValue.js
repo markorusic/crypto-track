@@ -1,4 +1,4 @@
-export default function (value) {
+export default (value) => {
   if (!value) {
     value = 0
   }

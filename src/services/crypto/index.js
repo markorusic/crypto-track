@@ -1,14 +1,13 @@
-import { TOTAL_CURRENCIES_SHOWN, USER_DATA_LC_KEY } from 'config/app'
+import { USER_DATA_LC_KEY } from 'config/app'
 import api from './api'
 
 export default {
   fetchCurrencyData () {
     return api.fetchData()
-      .then(({ data }) => {
+      .then((data) => {
         const currencies = Object.values(data)
         const userCurrencies = this.getUserCurrencyData()
         return currencies
-          .slice(0, TOTAL_CURRENCIES_SHOWN)
           .map(currnecy => {
             return {
               ...currnecy,

@@ -4,7 +4,15 @@ import routes from 'routes'
 
 export default class App extends Component {
   render() {
-    const routeComponents = routes.map(({ path, component }, key) => <Route exact path={path} component={component} key={key} />);
+    const routeComponents = routes
+      .map(({ path, component }, key) => (
+        <Route
+          exact
+          path={path}
+          component={component}
+          key={key}
+        />
+      ))
     return (
       <BrowserRouter>
         <Switch>
