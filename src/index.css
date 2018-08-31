@@ -58,3 +58,27 @@ tr:nth-child(even) {
     transform: rotate(360deg);
   }
 }
+
+/* Helpers */
+.full-width {
+  width: 100;
+}
+
+.flex-center, .flex-center-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-center-col {
+  flex-direction: column;
+}
+
+/* Specifics */
+.user-currency-form * {
+  width: 100%;
+}
+
+.user-currency-form button {
+  margin-top: 5px;
+}

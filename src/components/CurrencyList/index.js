@@ -1,7 +1,7 @@
 import React from 'react'
 import CurrencyListItem from './CurrencyListItem'
 
-export default ({ currencies = [] }) => (
+export default ({ currencies = [], onUserAmountSubmit }) => (
   <table>
     <thead>
       <tr>
@@ -20,6 +20,7 @@ export default ({ currencies = [] }) => (
             <CurrencyListItem
               key={currency.id}
               currency={currency}
+              onUserAmountSubmit={onUserAmountSubmit}
             />
           )
       }

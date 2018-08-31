@@ -20,9 +20,8 @@ class App extends Component {
   }
 
   reloadData = () => {
-    return cryptoService.api.fetchData()
-      .then(({ data }) => {
-        const currencies = Object.values(data)
+    return cryptoService.fetchCurrencyData()
+      .then(currencies => {
         this.setState({ currencies })
       })
   }
@@ -31,6 +30,10 @@ class App extends Component {
     this.setState(prevState => ({
       showLoader: !prevState.showLoader
     }))
+  }
+
+  onUserAmountSubmit = (data) => {
+    cryptoService.addUserCurrency(data)
   }
 
   render () {
@@ -46,6 +49,7 @@ class App extends Component {
       <div>
         <CurrencyList
           currencies={currencies}
+          onUserAmountSubmit={this.onUserAmountSubmit}
         />
       </div>
     );
