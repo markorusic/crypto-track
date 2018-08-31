@@ -28,7 +28,6 @@ export default {
   addUserCurrency ({ id, amount }) {
     const userCurrencies = this.getUserCurrencyData()
     userCurrencies[id] = amount
-    console.log(userCurrencies)
     this.updateUserCurrencyData(userCurrencies)
   },
 }

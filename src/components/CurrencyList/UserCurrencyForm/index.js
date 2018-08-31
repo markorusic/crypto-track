@@ -15,15 +15,26 @@ export default class UserCurrencyForm extends Component {
     })
   }
 
-  onSubmit = () => {
-    this.props.onSubmit(this.state.amount)
+  onSubmit = (event) => {
+    event.preventDefault()
+    const { amount } = this.state
+    const isValidAmount = this.isValidAmount()
+    if (isValidAmount) {
+      this.props.onSubmit(amount)
+      this.setState({ amount: '' })
+    }
+  }
+
+  isValidAmount = () => {
+    const regexp = /^[0-9]+([,.][0-9]+)?$/g
+    return regexp.test(this.state.amount)
   }
 
   render () {
-    const { disableSubmit } = this.props;
-    const { amount } = this.state;
+    const { amount } = this.state
+    const disableSubmit = !this.isValidAmount()
     return (
-      <div className="user-currency-form">
+      <form onSubmit={this.onSubmit} className="user-currency-form">
         <div>
           <input
             type="text"
@@ -33,13 +44,13 @@ export default class UserCurrencyForm extends Component {
         </div>
         <div>
           <button
-            onClick={this.onSubmit}
+            type="submit"
             disabled={disableSubmit}
           >
             Submit
           </button>
         </div>
-      </div>
+      </form>
     )
   }
 }

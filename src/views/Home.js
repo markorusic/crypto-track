@@ -33,7 +33,16 @@ class App extends Component {
   }
 
   onUserAmountSubmit = (data) => {
+    const { id } = data
     cryptoService.addUserCurrency(data)
+    this.setState(prevState => ({
+      currencies: prevState.currencies.map(currency => {
+        if (currency.id === id) {
+          currency.userAmount = data.amount
+        }
+        return currency
+      })
+    }))
   }
 
   render () {
