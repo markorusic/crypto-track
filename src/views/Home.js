@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { REFRESH_INTERVAL } from 'config/app'
 import cryptoService from 'services/crypto'
-import Loader from 'components/shared/Loader'
 import CurrencyList from 'components/currency/CurrencyList'
+import withLoading from 'hoc/withLoading'
 
+const CurrencyListWithLoading = withLoading(CurrencyList)
 
 class App extends Component {
 
   state = {
     currencies: [],
-    showLoader: false
+    isLoading: false
   }
 
   componentWillMount () {
@@ -32,7 +33,7 @@ class App extends Component {
 
   toggleLoader = () => {
     this.setState(prevState => ({
-      showLoader: !prevState.showLoader
+      isLoading: !prevState.isLoading
     }))
   }
 
@@ -50,17 +51,12 @@ class App extends Component {
   }
 
   render () {
-    const { currencies, showLoader }  = this.state
-
-    if (showLoader) {
-      return (
-        <Loader />
-      )
-    }
+    const { currencies, isLoading }  = this.state
 
     return (
       <div>
-        <CurrencyList
+        <CurrencyListWithLoading
+          isLoading={isLoading}
           currencies={currencies}
           onUserAmountSubmit={this.onUserAmountSubmit}
         />
