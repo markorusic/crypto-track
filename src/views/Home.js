@@ -16,7 +16,11 @@ class App extends Component {
     this.toggleLoader()
     this.reloadData()
       .then(this.toggleLoader)
-    setInterval(this.reloadData, REFRESH_INTERVAL)
+    this.currencyReloadInterval = setInterval(this.reloadData, REFRESH_INTERVAL)
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.currencyReloadInterval)
   }
 
   reloadData = () => {

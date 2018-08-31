@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from "react-router-dom";
 import {
   formatCurrencyValue,
   formatCurrencyPercent
@@ -24,9 +25,9 @@ export default class CurrencyListItem extends Component {
     return (
       <tr className="currency-list-item">
         <td>
-          <a href={'/currency' + id}>
+          <Link to={'/currency/' + id}>
             {name}
-          </a>
+          </Link>
         </td>
         <td>{symbol}</td>
         <td>{formatCurrencyValue(quotes.USD.price)}</td>
