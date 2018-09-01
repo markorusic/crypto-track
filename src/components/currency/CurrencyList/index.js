@@ -38,6 +38,7 @@ class CurrencyList extends Component {
               <th>last 24h</th>
               <th>Amount you own</th>
               <th>$ value of your coin</th>
+              <th>$ profit/loss since last visit</th>
             </tr>
           </thead>
           <tbody>
@@ -58,7 +59,6 @@ class CurrencyList extends Component {
           totalItems={totalItems}
           perPage={TOTAL_CURRENCIES_PER_PAGE}
           onPageClick={this.goToPage}
-          pageNeighbours={3}
           itemType="Currencies"
         />
       </div>

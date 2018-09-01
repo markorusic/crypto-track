@@ -22,7 +22,7 @@ class UserCurrencyForm extends Component {
     const { amount } = this.state
     const isValidAmount = this.isValidAmount()
     if (isValidAmount) {
-      this.props.onSubmit(amount)
+      this.props.onSubmit(Number(amount))
     }
   }
 

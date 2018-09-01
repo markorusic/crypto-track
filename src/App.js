@@ -19,6 +19,6 @@ export default class App extends Component {
           {routeComponents}
         </Switch>
       </BrowserRouter>
-    );
+    )
   }
 }

@@ -10,6 +10,6 @@ const routes = [
     path: '/currency/:id',
     component: CurrencyDetails
   }
-];
+]
 
 export default routes

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { REFRESH_INTERVAL } from 'config/app'
-import cryptoService from 'services/crypto'
+import { REFRESH_INTERVAL_MS } from 'config/app'
+import currencyService from 'services/currency'
+import userService from 'services/user'
 import Container from 'components/shared/Container'
 import CurrencyList from 'components/currency/CurrencyList'
 import withLoading from 'hoc/withLoading'
@@ -18,7 +19,7 @@ class App extends Component {
     this.toggleLoader()
     this.reloadData()
       .then(this.toggleLoader)
-    this.currencyReloadInterval = setInterval(this.reloadData, REFRESH_INTERVAL)
+    this.currencyReloadInterval = setInterval(this.reloadData, REFRESH_INTERVAL_MS)
   }
 
   componentWillUnmount () {
@@ -26,7 +27,7 @@ class App extends Component {
   }
 
   reloadData = () => {
-    return cryptoService.fetchCurrencyData()
+    return currencyService.fetchCurrencyData()
       .then(currencies => {
         this.setState({ currencies })
       })
@@ -38,13 +39,12 @@ class App extends Component {
     }))
   }
 
-  onUserAmountSubmit = (data) => {
-    const { id } = data
-    cryptoService.addUserCurrency(data)
+  onUserAmountSubmit = ({ id, amount, currencyValue }) => {
+    const userCurrencyData = userService.saveCurrency({ id, amount, currencyValue })
     this.setState(prevState => ({
       currencies: prevState.currencies.map(currency => {
         if (currency.id === id) {
-          currency.userAmount = data.amount
+          currency.userData = userCurrencyData
         }
         return currency
       })
@@ -62,7 +62,7 @@ class App extends Component {
           onUserAmountSubmit={this.onUserAmountSubmit}
         />
       </Container>
-    );
+    )
   }
 }
 

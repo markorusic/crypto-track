@@ -9,7 +9,7 @@ class Pagination extends Component {
 
   constructor (props) {
     super(props)
-    const { totalItems, perPage, pageNeighbours } = props
+    const { totalItems, perPage, pageNeighbours = 3 } = props
     const totalPages = Math.ceil(totalItems / perPage)
 
     this.state = {
@@ -122,7 +122,7 @@ class Pagination extends Component {
                     <span aria-hidden="true">&laquo;</span>
                   </span>
                 </li>
-              );
+              )
 
               if (page === RIGHT_PAGE) return (
                 <li key={index} className="page-item" onClick={this.onMoveRight}>
@@ -130,7 +130,7 @@ class Pagination extends Component {
                     <span aria-hidden="true">&raquo;</span>
                   </span>
                 </li>
-              );
+              )
 
               return (
                 <li
@@ -140,7 +140,7 @@ class Pagination extends Component {
                 >
                   <span className="page-link">{page}</span>
                 </li>
-              );
+              )
 
             })}
 
@@ -156,7 +156,7 @@ Pagination.propTypes = {
   totalItems: PropTypes.number.isRequired,
   perPage: PropTypes.number.isRequired,
   onPageClick: PropTypes.func.isRequired,
-  pageNeighbours: PropTypes.number.isRequired,
+  pageNeighbours: PropTypes.number,
   itemType: PropTypes.string
 }
 

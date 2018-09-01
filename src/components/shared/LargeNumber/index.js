@@ -16,7 +16,7 @@ const LargeNumber = ({ number, textBefore, textAfter }) => {
 }
 
 LargeNumber.propTypes = {
-  number: PropTypes.number.isRequired,
+  number: PropTypes.number,
   textBefore: PropTypes.string,
   textAfter: PropTypes.string
 }

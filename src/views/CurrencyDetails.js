@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Container from 'components/shared/Container'
 import CurrencyDetailsContent from 'components/currency/CurrencyDetailsContent'
 import withLoading from 'hoc/withLoading'
-import cryptoServiceApi from 'services/crypto/api'
+import currencyServiceApi from 'services/currency/api'
 
 const CurrencyDetailsContentWithLoading = withLoading(CurrencyDetailsContent)
 
@@ -16,7 +16,7 @@ export default class CurrencyDetails extends Component {
   componentWillMount () {
     const id = this.props.match.params.id
     this.toggleLoader()
-    cryptoServiceApi.fetchDataById(id)
+    currencyServiceApi.fetchDataById(id)
       .then(data => {
         this.setState({ currency: data })
         this.toggleLoader()

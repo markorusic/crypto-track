@@ -1,10 +1,14 @@
+/* Globals */
+
 body {
   margin: 0;
   padding: 0;
   font-family: Helvetica;
 }
 
-/* Table */
+a {
+  color: #444444;
+}
 
 table {
   font-family: arial, sans-serif;
@@ -19,7 +23,7 @@ td, th {
   text-align: center;
 }
 
-tr:nth-child(even) {
+th, tr:nth-child(even) {
   background-color: #dddddd;
 }
 
@@ -65,7 +69,7 @@ tr:nth-child(even) {
   width: 100;
 }
 .container {
-  padding: 5px 15px;
+  padding: 10px 30px;
 }
 .mr-10 {
   margin-right: 10px;

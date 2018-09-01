@@ -9,16 +9,19 @@ class CurrencyListItem extends Component {
 
   onUserAmountSubmit = (amount) =>  {
     const { currency, onUserAmountSubmit } = this.props
-    const { id } = currency
+    const { id, quotes } = currency
     onUserAmountSubmit({
       id,
-      amount
+      amount,
+      currencyValue: quotes.USD.price
     })
   }
 
   render () {
     const { currency } = this.props
-    const { id, name, symbol, quotes, userAmount } = currency
+    const { id, name, symbol, quotes, userData } = currency
+    const lastUserCurrencyValue = userData.amount * userData.lastCurrencyValue
+    const currentUserCurrencyValue = userData.amount * quotes.USD.price
 
     return (
       <tr className="currency-list-item">
@@ -34,11 +37,12 @@ class CurrencyListItem extends Component {
         </td>
         <td>
           <UserCurrencyForm
-            amount={userAmount}
+            amount={userData.amount}
             onSubmit={this.onUserAmountSubmit}
           />
         </td>
-        <td>{formatCurrencyValue(userAmount * quotes.USD.price)}</td>
+        <td>{formatCurrencyValue(currentUserCurrencyValue)}</td>
+        <td>{formatCurrencyValue(currentUserCurrencyValue - lastUserCurrencyValue)}</td>
       </tr>
     )
   }
