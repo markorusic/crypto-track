@@ -119,10 +119,10 @@ export default class Pagination extends Component {
     return (
       <div className="pagination-wrapper flex-sp-between">
         <div className="flex-sp-between">
-          <span className="mr-10">
+          <span className="mr-10 font-size-15">
             <strong>{totalItems}</strong> {itemType}
           </span>
-          <span>
+          <span className="font-size-20">
             Page <strong>{currentPage} / {totalPages}</strong>
           </span>
         </div>
@@ -131,26 +131,28 @@ export default class Pagination extends Component {
             {pages.map((page, index) => {
 
               if (page === LEFT_PAGE) return (
-                <li key={index} className="page-item">
-                  <a className="page-link" aria-label="Previous" onClick={this.onMoveLeft}>
+                <li key={index} className="page-item" onClick={this.onMoveLeft}>
+                  <span className="page-link" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
-                    <span className="sr-only">Previous</span>
-                  </a>
+                  </span>
                 </li>
               );
 
               if (page === RIGHT_PAGE) return (
-                <li key={index} className="page-item">
-                  <a className="page-link" aria-label="Next" onClick={this.onMoveRight}>
+                <li key={index} className="page-item" onClick={this.onMoveRight}>
+                  <span className="page-link" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
-                    <span className="sr-only">Next</span>
-                  </a>
+                  </span>
                 </li>
               );
 
               return (
-                <li key={index} className={`page-item${currentPage === page ? ' active' : ''}`}>
-                  <a className="page-link" onClick={() => { this.onPageClick(page) }}>{page}</a>
+                <li
+                  key={index}
+                  className={`page-item${currentPage === page ? ' active' : ''}`}
+                  onClick={() => { this.onPageClick(page) }}
+                >
+                  <span className="page-link">{page}</span>
                 </li>
               );
 

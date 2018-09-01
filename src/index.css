@@ -73,6 +73,9 @@ tr:nth-child(even) {
 .p-20 {
   padding: 20px;
 }
+.font-size-15 {
+  font-size: 15px;
+}
 
 .list-reset,
 .flex-list {
@@ -130,19 +133,24 @@ tr:nth-child(even) {
 .pagination {
   margin-top: 0;
   margin-bottom: 0;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.pagination li {
+  padding: 5px 10px;
+  border: 1px solid #9b9696;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #4c4c4c;
+  user-select: none;
+}
+.pagination li:hover {
+  border-color: #515151;
 }
 .pagination li:not(:last-child) {
-  margin-right: 10px;
+  margin-right: 1px;
 }
-.pagination li a {
-  cursor: pointer;
-  font-size: 20px;
-  color: #4c4c4c;
-}
-.pagination li.active a {
+.pagination li.active {
+  background-color: #e8e8e8;
   color: #000;
-}
-.pagination li a:hover {
-  opacity: 0.9;
 }
