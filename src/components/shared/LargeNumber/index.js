@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { formatLargeNumber } from 'helpers/format'
 
-export default ({ number, textBefore, textAfter }) => {
+const LargeNumber = ({ number, textBefore, textAfter }) => {
 
   if (!number) {
     return (
@@ -13,3 +14,11 @@ export default ({ number, textBefore, textAfter }) => {
     <span>{textBefore} {formatLargeNumber(number)} {textAfter}</span>
   )
 }
+
+LargeNumber.propTypes = {
+  number: PropTypes.number.isRequired,
+  textBefore: PropTypes.string,
+  textAfter: PropTypes.string
+}
+
+export default LargeNumber

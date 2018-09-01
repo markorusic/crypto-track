@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {
   formatCurrencyValue,
   formatDateFromNow
@@ -6,7 +7,7 @@ import {
 import LargeNumber from 'components/shared/LargeNumber'
 import CurrencyPercent from 'components/currency/CurrencyPercent'
 
-export default ({ currency }) => (
+const CurrencyDetailsContent = ({ currency }) => (
   <div>
     <h1>{currency.name}({currency.symbol}) #{currency.rank}</h1>
     <p>Last Updated: {formatDateFromNow(currency.last_updated * 1000)}</p>
@@ -52,3 +53,10 @@ export default ({ currency }) => (
     </div>
   </div>
 )
+
+CurrencyDetailsContent.propTypes = {
+  currency: PropTypes.object.isRequired,
+  isLoading: PropTypes.bool
+}
+
+export default CurrencyDetailsContent

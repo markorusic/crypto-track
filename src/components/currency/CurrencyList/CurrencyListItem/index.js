@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { formatCurrencyValue } from 'helpers/format'
 import UserCurrencyForm from 'components/currency/CurrencyList/UserCurrencyForm'
 import CurrencyPercent from 'components/currency/CurrencyPercent'
 
-export default class CurrencyListItem extends Component {
+class CurrencyListItem extends Component {
 
   onUserAmountSubmit = (amount) =>  {
     const { currency, onUserAmountSubmit } = this.props
@@ -42,3 +43,10 @@ export default class CurrencyListItem extends Component {
     )
   }
 }
+
+CurrencyListItem.propTypes = {
+  currency: PropTypes.object.isRequired,
+  onUserAmountSubmit: PropTypes.func.isRequired
+}
+
+export default CurrencyListItem

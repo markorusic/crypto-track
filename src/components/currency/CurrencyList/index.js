@@ -1,17 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { TOTAL_CURRENCIES_PER_PAGE } from 'config/app'
 import Pagination from 'components/shared/Pagination'
 import CurrencyListItem from './CurrencyListItem'
 
-export default class CurrencyList extends Component {
+class CurrencyList extends Component {
 
-  constructor (props) {
-    super(props)
-
-    this.state = {
-      currentPage: 1,
-    }
-
+  state = {
+    currentPage: 1
   }
 
   getCurrenciesToShow = () => {
@@ -69,3 +65,11 @@ export default class CurrencyList extends Component {
     )
   }
 }
+
+CurrencyList.propTypes = {
+  currencies: PropTypes.array.isRequired,
+  onUserAmountSubmit: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool
+}
+
+export default CurrencyList

@@ -1,25 +1,26 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-const LEFT_PAGE = 'LEFT';
-const RIGHT_PAGE = 'RIGHT';
+const LEFT_PAGE = 'LEFT'
+const RIGHT_PAGE = 'RIGHT'
 
 /**
  * Helper method for creating a range of numbers
  * range(1, 5) => [1, 2, 3, 4, 5]
  */
 const range = (from, to, step = 1) => {
-  let i = from;
-  const range = [];
+  let i = from
+  const range = []
 
   while (i <= to) {
-    range.push(i);
-    i += step;
+    range.push(i)
+    i += step
   }
 
-  return range;
+  return range
 }
 
-export default class Pagination extends Component {
+class Pagination extends Component {
 
   constructor (props) {
     super(props)
@@ -164,3 +165,14 @@ export default class Pagination extends Component {
     )
   }
 }
+
+Pagination.propTypes = {
+  currentPage: PropTypes.number.isRequired,
+  totalItems: PropTypes.number.isRequired,
+  perPage: PropTypes.number.isRequired,
+  onPageClick: PropTypes.func.isRequired,
+  pageNeighbours: PropTypes.number.isRequired,
+  itemType: PropTypes.string
+}
+
+export default  Pagination

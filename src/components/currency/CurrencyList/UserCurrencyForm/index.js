@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
-export default class UserCurrencyForm extends Component {
+class UserCurrencyForm extends Component {
 
   constructor (props) {
     super(props)
@@ -55,3 +56,10 @@ export default class UserCurrencyForm extends Component {
     )
   }
 }
+
+UserCurrencyForm.propTypes = {
+  amount: PropTypes.any,
+  onSubmit: PropTypes.func.isRequired
+}
+
+export default UserCurrencyForm
