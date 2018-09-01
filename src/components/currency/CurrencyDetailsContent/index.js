@@ -37,16 +37,16 @@ export default ({ currency }) => (
       </p>
       <p>
         <LargeNumber
-          textBefore="Total Supply:"
+          textBefore="Max Supply:"
           textAfter={currency.symbol}
-          number={currency.total}
+          number={currency.max_supply}
         />
       </p>
       <p>
         <LargeNumber
-          textBefore="Max Supply:"
+          textBefore="Total Supply:"
           textAfter={currency.symbol}
-          number={currency.max_supply}
+          number={currency.total_supply}
         />
       </p>
     </div>

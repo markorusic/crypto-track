@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Container from 'components/shared/Container'
 import CurrencyDetailsContent from 'components/currency/CurrencyDetailsContent'
 import withLoading from 'hoc/withLoading'
 import cryptoServiceApi from 'services/crypto/api'
@@ -32,12 +33,12 @@ export default class CurrencyDetails extends Component {
     const { currency, isLoading } = this.state
 
     return (
-      <div>
+      <Container>
         <CurrencyDetailsContentWithLoading
           isLoading={isLoading}
           currency={currency}
         />
-      </div>
+      </Container>
     )
   }
 }

@@ -4,8 +4,9 @@ export default class UserCurrencyForm extends Component {
 
   constructor (props) {
     super(props)
+    const { amount = '' } = props
     this.state = {
-      amount: props.amount || ''
+      amount
     }
   }
 
@@ -21,7 +22,6 @@ export default class UserCurrencyForm extends Component {
     const isValidAmount = this.isValidAmount()
     if (isValidAmount) {
       this.props.onSubmit(amount)
-      this.setState({ amount: '' })
     }
   }
 
@@ -37,6 +37,7 @@ export default class UserCurrencyForm extends Component {
       <form onSubmit={this.onSubmit} className="user-currency-form">
         <div>
           <input
+            className="text-center"
             type="text"
             value={amount}
             onChange={this.onAmountChange}

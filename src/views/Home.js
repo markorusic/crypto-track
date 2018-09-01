@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { REFRESH_INTERVAL } from 'config/app'
 import cryptoService from 'services/crypto'
+import Container from 'components/shared/Container'
 import CurrencyList from 'components/currency/CurrencyList'
 import withLoading from 'hoc/withLoading'
 
@@ -54,13 +55,13 @@ class App extends Component {
     const { currencies, isLoading }  = this.state
 
     return (
-      <div>
+      <Container>
         <CurrencyListWithLoading
           isLoading={isLoading}
           currencies={currencies}
           onUserAmountSubmit={this.onUserAmountSubmit}
         />
-      </div>
+      </Container>
     );
   }
 }

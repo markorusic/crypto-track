@@ -16,6 +16,7 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  text-align: center;
 }
 
 tr:nth-child(even) {
@@ -63,15 +64,47 @@ tr:nth-child(even) {
 .full-width {
   width: 100;
 }
+.container {
+  padding: 5px 15px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+.p-20 {
+  padding: 20px;
+}
+
+.list-reset,
+.flex-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.flex,
+.flex-list,
+.flex-center,
+.flex-center-col,
+.flex-sp-between {
+  display: flex;
+}
 
 .flex-center, .flex-center-col {
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .flex-center-col {
   flex-direction: column;
+}
+
+.flex-sp-between {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
 }
 
 .text-green {
@@ -89,4 +122,27 @@ tr:nth-child(even) {
 
 .user-currency-form button {
   margin-top: 5px;
+}
+
+.pagination-wrapper {
+  padding: 10px;
+}
+.pagination {
+  margin-top: 0;
+  margin-bottom: 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.pagination li:not(:last-child) {
+  margin-right: 10px;
+}
+.pagination li a {
+  cursor: pointer;
+  font-size: 20px;
+  color: #4c4c4c;
+}
+.pagination li.active a {
+  color: #000;
+}
+.pagination li a:hover {
+  opacity: 0.9;
 }
