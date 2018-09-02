@@ -19,8 +19,8 @@ class CurrencyListItem extends Component {
 
   render () {
     const { currency } = this.props
-    const { id, name, symbol, quotes, userData } = currency
-    const lastUserCurrencyValue = userData.amount * userData.lastCurrencyValue
+    const { id, name, symbol, quotes, lastValue, userData } = currency
+    const lastUserCurrencyValue = userData.amount * lastValue
     const currentUserCurrencyValue = userData.amount * quotes.USD.price
 
     return (

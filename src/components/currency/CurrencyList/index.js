@@ -29,7 +29,7 @@ class CurrencyList extends Component {
 
     return (
       <div>
-        <table>
+        <table className="table">
           <thead>
             <tr>
               <th>Name</th>

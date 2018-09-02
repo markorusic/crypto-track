@@ -1,11 +1,12 @@
 .full-width {
   width: 100; }
 
-.container {
+.page-container {
   max-width: 1360px;
-  margin: 0 auto;
+  margin: 10px auto;
   padding: 20px 30px;
-  background-color: #f5f3f3; }
+  border: 1px solid #eee;
+  border-radius: 5px; }
 
 .ml-10 {
   margin-left: 10px; }

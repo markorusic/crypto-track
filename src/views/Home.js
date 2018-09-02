@@ -12,13 +12,17 @@ class App extends Component {
 
   state = {
     currencies: [],
+    lastCurrencyValues: userService.getAllCurrencyData(),
     isLoading: false
   }
 
   componentWillMount () {
     this.toggleLoader()
     this.reloadData()
-      .then(this.toggleLoader)
+      .then((currencies) => {
+        this.toggleLoader()
+        userService.updateUserCurrencyValues(currencies)
+      })
     this.currencyReloadInterval = setInterval(this.reloadData, REFRESH_INTERVAL_MS)
   }
 
@@ -27,9 +31,19 @@ class App extends Component {
   }
 
   reloadData = () => {
+    const { lastCurrencyValues } = this.state
     return currencyService.fetchCurrencyData()
-      .then(currencies => {
+      .then((currencies) => {
+        currencies = currencies.map((curr) => {
+          let lastValue = null
+          if (lastCurrencyValues[curr.id]) {
+            lastValue = lastCurrencyValues[curr.id].lastCurrencyValue
+          }
+          curr.lastValue = lastValue
+          return curr
+        })
         this.setState({ currencies })
+        return currencies
       })
   }
 

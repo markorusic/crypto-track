@@ -105,7 +105,7 @@ class Pagination extends Component {
     return (
       <div className="pagination-wrapper flex-sp-between">
         <div className="flex-sp-between">
-          <span className="mr-10 font-size-15">
+          <span className="mr-10 font-size-15 delimiter">
             <strong>{totalItems}</strong> {itemType}
           </span>
           <span className="font-size-20">

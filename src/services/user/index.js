@@ -14,13 +14,23 @@ export default {
   getCurrencyData (id) {
     return this.getAllCurrencyData()[id] || DEFAULT_USER_CURRENCY
   },
-  saveCurrency ({ id, amount, currencyValue }) {
-    const userData = this.getAllCurrencyData()
-    userData[id] = { amount, lastCurrencyValue: currencyValue }
-    this.syncWithLocalStorage(userData)
-    return userData[id]
+  syncWithLocalStorage (userCurrencies) {
+    localStorage.setItem(USER_DATA_LC_KEY, JSON.stringify(userCurrencies))
   },
-  syncWithLocalStorage (data) {
-    localStorage.setItem(USER_DATA_LC_KEY, JSON.stringify(data))
+  saveCurrency ({ id, amount, currencyValue }) {
+    const userCurrencies = this.getAllCurrencyData()
+    userCurrencies[id] = { amount, currencyValue }
+    this.syncWithLocalStorage(userCurrencies)
+    return userCurrencies[id]
+  },
+  updateUserCurrencyValues (currencies) {
+    const userCurrencies = this.getAllCurrencyData()
+    for (const currencyId in userCurrencies) {
+      const currency = currencies.find(currency => currency.id === Number(currencyId))
+      if (currency) {
+        userCurrencies[currencyId].lastCurrencyValue = currency.quotes.USD.price
+      }
+    }
+    this.syncWithLocalStorage(userCurrencies)
   }
 }

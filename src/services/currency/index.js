@@ -6,6 +6,7 @@ export default {
     return api.fetchData()
       .then((data) => {
         const currencies = Object.values(data)
+        userService.updateUserCurrencyValues(currencies)
         return currencies
           .map((currnecy) => ({
             ...currnecy,
