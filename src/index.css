@@ -6,25 +6,41 @@ body {
   font-family: Helvetica;
 }
 
+h1 {
+  margin: 0;
+}
+
 a {
   color: #444444;
 }
 
-table {
+.table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-td, th {
+.table td, .table th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
   text-align: center;
 }
 
-th, tr:nth-child(even) {
+.table th, .table tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.table-min {
+  border-collapse: collapse;
+}
+
+.table-min th, .table-min td {
+  padding: 7px 15px 7px 0;
+}
+
+.table-min thead th {
+  border-bottom: 1px solid #eee;
 }
 
 /* Loader */
@@ -69,16 +85,31 @@ th, tr:nth-child(even) {
   width: 100;
 }
 .container {
-  padding: 10px 30px;
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+.ml-10 {
+  margin-left: 10px;
 }
 .mr-10 {
   margin-right: 10px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.my-10 {
+  margin: 10px 0;
 }
 .p-20 {
   padding: 20px;
 }
 .font-size-15 {
   font-size: 15px;
+}
+.delimiter {
+  border-right: 1px solid;
+  padding-right: 10px;
 }
 
 .list-reset,
@@ -92,20 +123,23 @@ th, tr:nth-child(even) {
 .flex-list,
 .flex-center,
 .flex-center-col,
-.flex-sp-between {
+.flex-sp-between,
+.flex-sp-between-col {
   display: flex;
 }
+.flex-center-col,
+.flex-sp-between-col {
+  flex-direction: column;
+}
 
-.flex-center, .flex-center-col {
+.flex-center,
+.flex-center-col {
   justify-content: center;
   align-items: center;
 }
 
-.flex-center-col {
-  flex-direction: column;
-}
-
-.flex-sp-between {
+.flex-sp-between,
+.flex-sp-between-col {
   justify-content: space-between;
   align-items: center;
 }
@@ -137,7 +171,6 @@ th, tr:nth-child(even) {
 .pagination {
   margin-top: 0;
   margin-bottom: 0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 .pagination li {
   padding: 5px 10px;
@@ -157,4 +190,22 @@ th, tr:nth-child(even) {
 .pagination li.active {
   background-color: #e8e8e8;
   color: #000;
+}
+
+.currency-details-header .rank {
+  background-color: #27C657;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px
+}
+.currency-details-header .short-name {
+  font-size: 18px;
+  color: #959AAC;
+  margin-left: 5px;
+}
+.small {
+  font-size: 22px;
+  /* color: #959AAC; */
+  font-weight: 400;
+  margin-left: 5px;
 }
