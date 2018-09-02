@@ -1,0 +1,75 @@
+.full-width {
+  width: 100;
+}
+.container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 20px 30px;
+  background-color: rgb(245, 243, 243)
+}
+.ml-10 {
+  margin-left: 10px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.my-10 {
+  margin: 10px 0;
+}
+.p-20 {
+  padding: 20px;
+}
+.font-size-15 {
+  font-size: 15px;
+}
+.delimiter {
+  border-right: 1px solid;
+  padding-right: 10px;
+}
+
+.list-reset,
+.flex-list {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.flex,
+.flex-list,
+.flex-center,
+.flex-center-col,
+.flex-sp-between,
+.flex-sp-between-col {
+  display: flex;
+}
+.flex-center-col,
+.flex-sp-between-col {
+  flex-direction: column;
+}
+
+.flex-center,
+.flex-center-col {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-sp-between,
+.flex-sp-between-col {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-green {
+  color: green;
+}
+
+.text-red {
+  color: red;
+}
