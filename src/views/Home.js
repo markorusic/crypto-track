@@ -35,11 +35,11 @@ class App extends Component {
     return currencyService.fetchCurrencyData()
       .then((currencies) => {
         currencies = currencies.map((curr) => {
-          let lastValue = null
+          let lastUserValue = null
           if (lastCurrencyValues[curr.id]) {
-            lastValue = lastCurrencyValues[curr.id].lastCurrencyValue
+            lastUserValue = lastCurrencyValues[curr.id].amount * lastCurrencyValues[curr.id].lastCurrencyValue
           }
-          curr.lastValue = lastValue
+          curr.lastUserValue = lastUserValue
           return curr
         })
         this.setState({ currencies })
