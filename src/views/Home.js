@@ -77,13 +77,13 @@ class App extends Component {
           resourceNamePlural="Currencies"
         >
           {({ items, renderPagination }) => (
-            <div>
+            <React.Fragment>
               <CurrencyList
                 currencies={items}
                 onUserAmountSubmit={this.onUserAmountSubmit}
               />
               {renderPagination()}
-            </div>
+            </React.Fragment>
           )}
         </Pagination>
       </ContainerWithLoading>
