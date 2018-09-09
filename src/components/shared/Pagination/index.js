@@ -7,21 +7,51 @@ const RIGHT_PAGE = 'RIGHT'
 
 class Pagination extends Component {
 
-  constructor (props) {
-    super(props)
-    const { totalItems, perPage, pageNeighbours = 3 } = props
-    const totalPages = Math.ceil(totalItems / perPage)
-
-    this.state = {
-      totalPages,
-      pageNeighbours: Math.max(0, Math.min(pageNeighbours, 2))
-    }
+  static propTypes = {
+    items: PropTypes.arrayOf(PropTypes.object).isRequired,
+    perPage: PropTypes.number,
+    pageNeighbours: PropTypes.number,
+    resourceNamePlural: PropTypes.string,
+    onPageClick: PropTypes.func,
+    onReset: PropTypes.func
   }
 
-  getPageNumbers = () => {
+  static defaultProps = {
+    items: [],
+    perPage: 10,
+    pageNeighbours: 3,
+    resourceNamePlural: 'items',
+    onPageClick: () => { },
+    onReset: () => { }
+  }
 
-    const { currentPage } = this.props
-    const { totalPages, pageNeighbours } = this.state
+  initialState = {
+    currentPage: 1
+  }
+
+  state = this.initialState
+
+  reset = () => {
+    this.setState(this.initialState, () => {
+      this.props.onReset(this.state)
+    })
+  }
+
+  getItemsToShow = () => {
+    const { items, perPage } = this.props
+    const { currentPage } = this.state
+    const offset = (currentPage - 1) * perPage
+    return items.slice(offset, offset + perPage)
+  }
+
+  getTotalPages = () => Math.ceil(this.props.items.length / this.props.perPage)
+
+  getPageNeighbours = () => Math.max(0, Math.min(this.props.pageNeighbours, 2))
+
+  getPageNumbers = () => {
+    const { currentPage } = this.state
+    const totalPages = this.getTotalPages()
+    const pageNeighbours = this.getPageNeighbours()
 
     /**
      * totalNumbers: the total page numbers to show on the control
@@ -77,25 +107,35 @@ class Pagination extends Component {
 
   }
 
+  getStateAndHelpers = () => ({
+    ...this.state,
+    totalPages: this.getTotalPages(),
+    items: this.getItemsToShow(),
+    renderPagination: this.renderPagination
+  })
+
+  onPageClick = (currentPage) => {
+    this.setState({ currentPage }, () => {
+      this.props.onPageClick(this.state.page)
+    })
+  }
+
   onMoveLeft = () => {
-    const { currentPage, onPageClick } = this.props
-    onPageClick(currentPage - 1)
+    const { currentPage } = this.props
+    this.onPageClick(currentPage - 1)
   }
 
   onMoveRight = () => {
-    const { currentPage, onPageClick } = this.props
-    onPageClick(currentPage + 1)
-  }
-
-  onPageClick = (page) => {
-    const { onPageClick } = this.props
-    onPageClick(page)
+    const { currentPage } = this.props
+    this.onPageClick(currentPage + 1)
   }
 
 
-  render() {
-    const { currentPage, totalItems, itemType } = this.props
-    const { totalPages } = this.state
+  renderPagination = () => {
+    const { items, resourceNamePlural } = this.props
+    const { currentPage } = this.state
+    const totalItems = items.length
+    const totalPages = this.getTotalPages()
     const pages = this.getPageNumbers()
 
     if (!totalItems || totalPages === 1) {
@@ -106,7 +146,7 @@ class Pagination extends Component {
       <div className="pagination-wrapper flex-sp-between">
         <div className="flex-sp-between">
           <span className="mr-10 font-size-15 delimiter">
-            <strong>{totalItems}</strong> {itemType}
+            <strong>{totalItems}</strong> {resourceNamePlural}
           </span>
           <span className="font-size-20">
             Page <strong>{currentPage} / {totalPages}</strong>
@@ -143,21 +183,15 @@ class Pagination extends Component {
               )
 
             })}
-
           </ul>
         </div>
       </div>
     )
   }
+
+  render() {
+    return this.props.children(this.getStateAndHelpers())
+  }
 }
 
-Pagination.propTypes = {
-  currentPage: PropTypes.number.isRequired,
-  totalItems: PropTypes.number.isRequired,
-  perPage: PropTypes.number.isRequired,
-  onPageClick: PropTypes.func.isRequired,
-  pageNeighbours: PropTypes.number,
-  itemType: PropTypes.string
-}
-
-export default  Pagination
+export default Pagination

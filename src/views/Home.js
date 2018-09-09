@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
-import { REFRESH_INTERVAL_MS } from 'config/app'
+import { REFRESH_INTERVAL_MS, TOTAL_CURRENCIES_PER_PAGE } from 'config/app'
 import currencyService from 'services/currency'
 import userService from 'services/user'
 import Container from 'components/shared/Container'
+import Pagination from 'components/shared/Pagination'
 import CurrencyList from 'components/currency/CurrencyList'
 import withLoading from 'hoc/withLoading'
 
-const CurrencyListWithLoading = withLoading(CurrencyList)
+const ContainerWithLoading = withLoading(Container)
 
 class App extends Component {
 
@@ -16,7 +17,7 @@ class App extends Component {
     isLoading: false
   }
 
-  componentWillMount () {
+  componentWillMount() {
     this.toggleLoader()
     this.reloadData()
       .then((currencies) => {
@@ -26,7 +27,7 @@ class App extends Component {
     this.currencyReloadInterval = setInterval(this.reloadData, REFRESH_INTERVAL_MS)
   }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearInterval(this.currencyReloadInterval)
   }
 
@@ -65,17 +66,27 @@ class App extends Component {
     }))
   }
 
-  render () {
-    const { currencies, isLoading }  = this.state
+  render() {
+    const { currencies, isLoading } = this.state
 
     return (
-      <Container>
-        <CurrencyListWithLoading
-          isLoading={isLoading}
-          currencies={currencies}
-          onUserAmountSubmit={this.onUserAmountSubmit}
-        />
-      </Container>
+      <ContainerWithLoading isLoading={isLoading}>
+        <Pagination
+          items={currencies}
+          perPage={TOTAL_CURRENCIES_PER_PAGE}
+          resourceNamePlural="Currencies"
+        >
+          {({ items, renderPagination }) => (
+            <div>
+              <CurrencyList
+                currencies={items}
+                onUserAmountSubmit={this.onUserAmountSubmit}
+              />
+              {renderPagination()}
+            </div>
+          )}
+        </Pagination>
+      </ContainerWithLoading>
     )
   }
 }

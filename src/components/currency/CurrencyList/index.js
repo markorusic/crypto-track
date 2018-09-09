@@ -1,31 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { TOTAL_CURRENCIES_PER_PAGE } from 'config/app'
-import Pagination from 'components/shared/Pagination'
 import CurrencyListItem from './CurrencyListItem'
 
 class CurrencyList extends Component {
 
-  state = {
-    currentPage: 1
-  }
-
-  getCurrenciesToShow = () => {
-    const { currencies } = this.props
-    const { currentPage } = this.state
-    const offset = (currentPage - 1) * TOTAL_CURRENCIES_PER_PAGE
-    return currencies.slice(offset, offset + TOTAL_CURRENCIES_PER_PAGE)
-  }
-
-  goToPage = (page) => {
-    this.setState({ currentPage: page })
-  }
-
-  render () {
+  render() {
     const { currencies, onUserAmountSubmit } = this.props
-    const { currentPage } = this.state
-    const totalItems = currencies.length
-    const currenciesToShow = this.getCurrenciesToShow()
 
     return (
       <div>
@@ -43,7 +23,7 @@ class CurrencyList extends Component {
           </thead>
           <tbody>
             {
-              currenciesToShow
+              currencies
                 .map(currency =>
                   <CurrencyListItem
                     key={currency.id}
@@ -54,13 +34,6 @@ class CurrencyList extends Component {
             }
           </tbody>
         </table>
-        <Pagination
-          currentPage={currentPage}
-          totalItems={totalItems}
-          perPage={TOTAL_CURRENCIES_PER_PAGE}
-          onPageClick={this.goToPage}
-          itemType="Currencies"
-        />
       </div>
     )
   }
@@ -68,8 +41,7 @@ class CurrencyList extends Component {
 
 CurrencyList.propTypes = {
   currencies: PropTypes.array.isRequired,
-  onUserAmountSubmit: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool
+  onUserAmountSubmit: PropTypes.func.isRequired
 }
 
 export default CurrencyList
